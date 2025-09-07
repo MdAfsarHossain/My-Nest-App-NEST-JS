@@ -1,4 +1,6 @@
-import { Controller, Get, Param } from '@nestjs/common';
+/* eslint-disable prettier/prettier */
+import { Controller, Get, Param, UseGuards } from '@nestjs/common';
+import { AuthGuard } from 'src/guards/auth/auth.guard';
 import { ProductService } from './product.service';
 
 @Controller('product')
@@ -7,6 +9,7 @@ export class ProductController {
 
   //   Get all products
   @Get()
+  @UseGuards(AuthGuard)
   getProducts() {
     return this.productService.getAllProducts();
   }
