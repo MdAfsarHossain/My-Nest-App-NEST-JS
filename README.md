@@ -120,7 +120,7 @@ nest g filter filters/http-exception
 ```
 
 ```js
-
+npm i @nestjs/config
 ```
 
 ```js
