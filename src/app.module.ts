@@ -1,24 +1,38 @@
+/* eslint-disable prettier/prettier */
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UserController } from './user/user.controller';
-import { ProductService } from './product/product.service';
-import { ProductController } from './product/product.controller';
-import { EmployeeModule } from './employee/employee.module';
 import { CategoryModule } from './category/category.module';
-import { StudentService } from './student/student.service';
-import { StudentController } from './student/student.controller';
-import { StudentModule } from './student/student.module';
 import { CustomerController } from './customer/customer.controller';
-import { CustomerService } from './customer/customer.service';
 import { CustomerModule } from './customer/customer.module';
-import { MynameController } from './myname/myname.controller';
-import { UserRolesController } from './user-roles/user-roles.controller';
+import { CustomerService } from './customer/customer.service';
+import { DatabaseController } from './database/database.controller';
+import { DatabaseService } from './database/database.service';
+import { EmployeeModule } from './employee/employee.module';
+import { EvController } from './ev/ev.controller';
+import { EvService } from './ev/ev.service';
 import { ExceptionController } from './exception/exception.controller';
 import { LoggerMiddleware } from './middleware/logger/logger.middleware';
+import { MynameController } from './myname/myname.controller';
+import { ProductController } from './product/product.controller';
+import { ProductService } from './product/product.service';
+import { StudentController } from './student/student.controller';
+import { StudentModule } from './student/student.module';
+import { StudentService } from './student/student.service';
+import { UserRolesController } from './user-roles/user-roles.controller';
+import { UserController } from './user/user.controller';
 
 @Module({
-  imports: [EmployeeModule, CategoryModule, StudentModule, CustomerModule],
+  imports: [
+    EmployeeModule,
+    CategoryModule,
+    StudentModule,
+    CustomerModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+  ],
   controllers: [
     AppController,
     UserController,
@@ -28,8 +42,17 @@ import { LoggerMiddleware } from './middleware/logger/logger.middleware';
     MynameController,
     UserRolesController,
     ExceptionController,
+    DatabaseController,
+    EvController,
   ],
-  providers: [AppService, ProductService, StudentService, CustomerService],
+  providers: [
+    AppService,
+    ProductService,
+    StudentService,
+    CustomerService,
+    DatabaseService,
+    EvService,
+  ],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
