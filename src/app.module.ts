@@ -23,6 +23,7 @@ import { StudentService } from './student/student.service';
 import { UserRolesController } from './user-roles/user-roles.controller';
 import { UserController } from './user/user.controller';
 import { MongooseModule } from '@nestjs/mongoose';
+import { CollegeStudentModule } from './college-student/college-student.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { MongooseModule } from '@nestjs/mongoose';
       isGlobal: true,
     }),
     MongooseModule.forRoot(process.env.DATABASE_URL!),
+    CollegeStudentModule,
   ],
   controllers: [
     AppController,
