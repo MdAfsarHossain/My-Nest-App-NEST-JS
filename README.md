@@ -124,11 +124,11 @@ npm i @nestjs/config
 ```
 
 ```js
-
+npm i @nestjs/mongoose mongoose
 ```
 
 ```js
-
+npm i @nestjs/config
 ```
 
 ```js
