@@ -24,6 +24,8 @@ import { UserRolesController } from './user-roles/user-roles.controller';
 import { UserController } from './user/user.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { CollegeStudentModule } from './college-student/college-student.module';
+import { UserService } from './user/user.service';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -34,8 +36,10 @@ import { CollegeStudentModule } from './college-student/college-student.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    // ConfigModule.forRoot(),
     MongooseModule.forRoot(process.env.DATABASE_URL!),
     CollegeStudentModule,
+    UserModule,
   ],
   controllers: [
     AppController,
@@ -56,6 +60,7 @@ import { CollegeStudentModule } from './college-student/college-student.module';
     CustomerService,
     DatabaseService,
     EvService,
+    UserService,
   ],
 })
 export class AppModule implements NestModule {
@@ -63,3 +68,4 @@ export class AppModule implements NestModule {
     consumer.apply(LoggerMiddleware).forRoutes('*');
   }
 }
+// export class AppModule {}
